@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function ResultScreen({ childName, score, total, topic, onBackToTopics, onRetry }) {
+export default function ResultScreen({ childName, score, total, topic, newLevel, onBackToTopics, onRetry }) {
   const [showConfetti, setShowConfetti] = useState(false);
   const percentage = Math.round((score / total) * 100);
   const starsEarned = Math.floor((score / total) * 3);
 
+  // Get previous level to detect level changes
+  const [levelChange, setLevelChange] = useState(null);
+  
   useEffect(() => {
+    const progress = JSON.parse(localStorage.getItem('childProgress') || '{}');
+    const topicProgress = progress[topic.id];
+    
+    if (topicProgress && newLevel !== undefined) {
+      if (percentage >= 80 && newLevel > 1) {
+        setLevelChange('up');
+      } else if (percentage < 40 && newLevel < 3) {
+        setLevelChange('down');
+      }
+    }
+    
     if (percentage >= 60) {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 3000);
     }
-  }, [percentage]);
+  }, [percentage, newLevel, topic.id]);
 
   const getEmoji = () => {
     if (percentage === 100) return '🏆';
@@ -28,6 +42,17 @@ export default function ResultScreen({ childName, score, total, topic, onBackToT
     if (percentage >= 40) return `לא רע ${childName}! תתרגל/י עוד קצת!`;
     return `בוא/י ננסה שוב ${childName}! את/ה יכול/ה!`;
   };
+
+  const getLevelMessage = () => {
+    if (levelChange === 'up') {
+      return '🚀 עלית רמה! השאלות יהיו קצת יותר מאתגרות!';
+    } else if (levelChange === 'down') {
+      return '💪 נתחיל עם שאלות קצת יותר קלות!';
+    }
+    return null;
+  };
+
+  const levelNames = { 1: 'קל ⭐', 2: 'בינוני ⭐⭐', 3: 'מאתגר ⭐⭐⭐' };
 
   return (
     <motion.div
@@ -102,6 +127,23 @@ export default function ResultScreen({ childName, score, total, topic, onBackToT
             </motion.span>
           ))}
         </div>
+
+        {newLevel && (
+          <div className="current-level">
+            רמה נוכחית: {levelNames[newLevel]}
+          </div>
+        )}
+
+        {getLevelMessage() && (
+          <motion.div
+            className="level-change-message"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            {getLevelMessage()}
+          </motion.div>
+        )}
 
         <div className="result-buttons">
           <motion.button

@@ -34,9 +34,12 @@ function App() {
     setScreen('question');
   };
 
-  const handleQuestionComplete = (correct, total) => {
+  const [newLevel, setNewLevel] = useState(null);
+
+  const handleQuestionComplete = (correct, total, level) => {
     setScore(correct);
     setTotalQuestions(total);
+    setNewLevel(level);
     const earnedStars = Math.floor((correct / total) * 3);
     setStars(prev => prev + earnedStars);
     setScreen('result');
@@ -77,6 +80,7 @@ function App() {
             score={score}
             total={totalQuestions}
             topic={selectedTopic}
+            newLevel={newLevel}
             onBackToTopics={handleBackToTopics}
             onRetry={() => setScreen('question')}
           />
