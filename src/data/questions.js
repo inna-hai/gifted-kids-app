@@ -126,14 +126,28 @@ export const questionsBank = {
     { question: 'מה לא שייך לקבוצה?', image: '🍎 🍊 🍋 🥕', answers: ['🍎', '🍊', '🍋', '🥕'], correct: '🥕', difficulty: 1 },
     { question: 'מה לא שייך לקבוצה?', image: '🐕 🐈 🐁 🐟', answers: ['🐕', '🐈', '🐁', '🐟'], correct: '🐟', difficulty: 1 },
     { question: 'מה לא שייך לקבוצה?', image: '🌸 🌺 🌻 🌲', answers: ['🌸', '🌺', '🌻', '🌲'], correct: '🌲', difficulty: 1 },
+    { question: 'מה לא שייך לקבוצה?', image: '🚗 🚌 🚂 🍕', answers: ['🚗', '🚌', '🚂', '🍕'], correct: '🍕', difficulty: 1 },
+    { question: 'מה לא שייך לקבוצה?', image: '👀 👂 👃 👟', answers: ['👀', '👂', '👃', '👟'], correct: '👟', difficulty: 1 },
+    { question: 'מה לא שייך לקבוצה?', image: '🌞 🌙 ⭐ 🌳', answers: ['🌞', '🌙', '⭐', '🌳'], correct: '🌳', difficulty: 1 },
     // Medium (level 2)
     { question: 'מה לא שייך לקבוצה?', answers: ['אדום', 'ירוק', 'עגול', 'כחול'], correct: 'עגול', difficulty: 2 },
     { question: 'מה לא שייך לקבוצה?', answers: ['כיסא', 'שולחן', 'מיטה', 'טלוויזיה'], correct: 'טלוויזיה', difficulty: 2 },
     { question: 'מה לא שייך לקבוצה?', image: '✈️ 🚗 🚲 🚀', answers: ['✈️', '🚗', '🚲', '🚀'], correct: '🚲', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['תפוח', 'בננה', 'גזר', 'ענבים'], correct: 'גזר', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['כלב', 'חתול', 'ציפור', 'שולחן'], correct: 'שולחן', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['ראשון', 'שני', 'שלישי', 'אדום'], correct: 'אדום', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['גיטרה', 'פסנתר', 'כינור', 'כדור'], correct: 'כדור', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['רופא', 'מורה', 'שוטר', 'עץ'], correct: 'עץ', difficulty: 2 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['חורף', 'קיץ', 'אביב', 'שולחן'], correct: 'שולחן', difficulty: 2 },
     // Hard (level 3)
     { question: 'מה לא שייך לקבוצה?', answers: ['ינואר', 'פברואר', 'שני', 'מרץ'], correct: 'שני', difficulty: 3 },
     { question: 'מה לא שייך לקבוצה?', answers: ['2', '4', '5', '8'], correct: '5', difficulty: 3 },
     { question: 'מה לא שייך לקבוצה?', answers: ['עיפרון', 'מחק', 'סרגל', 'כדור'], correct: 'כדור', difficulty: 3 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['ריבוע', 'משולש', 'עיגול', 'אדום'], correct: 'אדום', difficulty: 3 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['10', '20', '25', '30'], correct: '25', difficulty: 3 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['ירושלים', 'תל אביב', 'חיפה', 'ישראל'], correct: 'ישראל', difficulty: 3 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['עין', 'אוזן', 'אף', 'יד'], correct: 'יד', difficulty: 3 },
+    { question: 'מה לא שייך לקבוצה?', answers: ['אריה', 'נמר', 'פיל', 'כלב'], correct: 'כלב', difficulty: 3 },
   ],
 
   'matrices': [
