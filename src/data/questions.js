@@ -136,14 +136,24 @@ export const questionsBank = {
     { question: 'הציפור _____ בשמיים.', answers: ['שוחה', 'עפה', 'רצה', 'זוחלת'], correct: 'עפה', difficulty: 1 },
     { question: 'הדג _____ במים.', answers: ['עף', 'רץ', 'שוחה', 'קופץ'], correct: 'שוחה', difficulty: 1 },
     { question: 'בלילה יוצאים ה_____.', answers: ['שמשות', 'עננים', 'כוכבים', 'ציפורים'], correct: 'כוכבים', difficulty: 1 },
+    { question: 'הילד היה מאוד _____ ולכן אכל כריך גדול.', answers: ['צמא', 'שבע', 'עייף', 'רעב'], correct: 'רעב', difficulty: 1 },
+    { question: 'הכלב _____ כשהוא שמח.', answers: ['בוכה', 'כועס', 'מקשקש בזנב', 'ישן'], correct: 'מקשקש בזנב', difficulty: 1 },
     // Medium (level 2)
     { question: 'השמש זורחת ב_____ ושוקעת בערב.', answers: ['לילה', 'בוקר', 'צהריים', 'חושך'], correct: 'בוקר', difficulty: 2 },
     { question: 'בחורף יורד _____ ובקיץ חם.', answers: ['שמש', 'גשם', 'חום', 'רוח'], correct: 'גשם', difficulty: 2 },
     { question: 'אנחנו קוראים _____ בספרייה.', answers: ['אוכל', 'ספרים', 'טלוויזיה', 'מוזיקה'], correct: 'ספרים', difficulty: 2 },
+    { question: 'המורה חילקה פרסים לכל התלמידים ה_____.', answers: ['יפים', 'בלונדינים', 'ממושמעים', 'גבוהים'], correct: 'ממושמעים', difficulty: 2 },
+    { question: 'הילדה שמה _____ על הראש כי השמש חזקה.', answers: ['משקפיים', 'כובע', 'צעיף', 'כפפות'], correct: 'כובע', difficulty: 2 },
+    { question: 'כדי לחצות את הכביש צריך לחכות ל_____ ירוק.', answers: ['שמש', 'ענן', 'רמזור', 'שלט'], correct: 'רמזור', difficulty: 2 },
     // Hard (level 3)
     { question: 'הילד _____ לבית הספר כל בוקר.', answers: ['ישן', 'הולך', 'אוכל', 'שר'], correct: 'הולך', difficulty: 3 },
     { question: 'כשאנחנו _____ אנחנו שותים מים.', answers: ['עייפים', 'שמחים', 'צמאים', 'עצובים'], correct: 'צמאים', difficulty: 3 },
     { question: 'הרופא עובד ב_____ ומטפל בחולים.', answers: ['מסעדה', 'בית חולים', 'בית ספר', 'חנות'], correct: 'בית חולים', difficulty: 3 },
+    { question: '_____ היא בירת פורטוגל.', answers: ['מדריד', 'פריז', 'ליסבון', 'לונדון'], correct: 'ליסבון', difficulty: 3 },
+    { question: '_____ היא בירת צרפת.', answers: ['לונדון', 'פריז', 'ברלין', 'רומא'], correct: 'פריז', difficulty: 3 },
+    { question: 'הספר נכתב על ידי ה_____.', answers: ['צייר', 'סופר', 'זמר', 'שחקן'], correct: 'סופר', difficulty: 3 },
+    { question: 'החיה הכי גדולה בעולם היא ה_____.', answers: ['פיל', 'ג׳ירפה', 'לווייתן', 'דינוזאור'], correct: 'לווייתן', difficulty: 3 },
+    { question: 'בשנה יש _____ חודשים.', answers: ['10', '11', '12', '13'], correct: '12', difficulty: 3 },
   ],
 
   'missing-number': [

@@ -172,7 +172,7 @@ export default function TopicSelection({ childName, stars, onSelectTopic }) {
         color: '#888',
         opacity: 0.6 
       }}>
-        גרסה 2.1 • 35 שאלות אנלוגיה 🆕
+        גרסה 2.2 • 18 שאלות השלמה 🆕
       </div>
     </motion.div>
   );
