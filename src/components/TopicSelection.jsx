@@ -164,6 +164,16 @@ export default function TopicSelection({ childName, stars, onSelectTopic }) {
           />
         )}
       </AnimatePresence>
+      
+      <div style={{ 
+        textAlign: 'center', 
+        marginTop: '2rem', 
+        fontSize: '0.75rem', 
+        color: '#888',
+        opacity: 0.6 
+      }}>
+        גרסה 2.1 • 35 שאלות אנלוגיה 🆕
+      </div>
     </motion.div>
   );
 }
