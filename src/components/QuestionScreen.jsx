@@ -87,10 +87,10 @@ export default function QuestionScreen({ topic, childName, onComplete, onBack })
       setSelectedAnswer(null);
       setShowFeedback(false);
     } else {
-      const finalCorrect = correctCount + (selectedAnswer === currentQuestion?.correct ? 1 : 0);
-      const ratio = finalCorrect / questions.length;
+      // correctCount already includes the last answer from handleAnswerSelect
+      const ratio = correctCount / questions.length;
       const newLevel = updateChildLevel(topic.id, ratio);
-      onComplete(finalCorrect, questions.length, newLevel);
+      onComplete(correctCount, questions.length, newLevel);
     }
   };
 
