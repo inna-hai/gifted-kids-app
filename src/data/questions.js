@@ -17,6 +17,11 @@ export const questionsBank = {
     { question: 'מה המספר הבא בסדרה? 1, 4, 9, 16, ?', answers: ['20', '23', '25', '28'], correct: '25', difficulty: 3 },
     { question: 'מה המספר הבא בסדרה? 2, 6, 12, 20, ?', answers: ['28', '30', '32', '36'], correct: '30', difficulty: 3 },
     { question: 'מה המספר הבא בסדרה? 1, 1, 2, 3, 5, ?', answers: ['6', '7', '8', '9'], correct: '8', difficulty: 3 },
+    // Advanced sequences from worksheets
+    { question: 'מה המספר הבא בסדרה? 28, 32, ?, 40, 44', answers: ['38', '35', '36', '34'], correct: '36', difficulty: 2 },
+    { question: 'מה המספר הבא בסדרה? 13, 23, ?, 43', answers: ['34', '43', '33', '30'], correct: '33', difficulty: 2 },
+    { question: 'מה המספר הבא בסדרה? 16, 14, 12, ?', answers: ['10', '11', '8', '14'], correct: '10', difficulty: 2 },
+    { question: 'סדרת פיבונאצ׳י: 1, 1, 2, 3, 5, ?', answers: ['8', '7', '6', '9'], correct: '8', difficulty: 3 },
   ],
 
   'sequences-shapes': [
@@ -129,6 +134,12 @@ export const questionsBank = {
     { question: 'מה הצורה שחסרה?\n⬜ ⬛ ⬜\n⬛ ⬜ ⬛\n⬜ ⬛ ?', answers: ['⬜', '⬛', '🔲', '🔳'], correct: '⬜', difficulty: 3 },
     { question: 'מה הצורה שחסרה בתבנית?\n🌟 🌟 🌙\n🌟 🌙 🌟\n🌙 🌟 ?', answers: ['🌟', '🌙', '⭐', '☀️'], correct: '🌟', difficulty: 3 },
     { question: 'מה המספר שחסר?\n| 2 | 4 | 6 |\n| 3 | 6 | 9 |\n| 4 | 8 | ? |', answers: ['10', '11', '12', '14'], correct: '12', difficulty: 3 },
+    // Advanced matrices from worksheets
+    { question: 'בעיגול: 2×5=10, 7×4=28. מה חסר? 5×?=25', answers: ['6', '4', '20', '5'], correct: '5', difficulty: 2 },
+    { question: 'עיגולים: 5+6=11, 8+5=13, 9+6=15. מה הבא? 8+9=?', answers: ['17', '16', '18', '19'], correct: '17', difficulty: 2 },
+    { question: 'סדרה: 6=2+4, 8=4+4, 10=6+4. מה הבא? ?=8+4', answers: ['16', '14', '13', '11'], correct: '12', difficulty: 2 },
+    { question: 'במשושה: 1+4+3+4+7+?=20. מה המספר החסר?', answers: ['2', '1', '4', '7'], correct: '1', difficulty: 3 },
+    { question: 'תבנית: 4×9-4=32, 6×7-6=36. מה הבא? 8×5-8=?', answers: ['37', '4', '30', '32'], correct: '32', difficulty: 3 },
   ],
 
   'sentence-completion': [
