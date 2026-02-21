@@ -53,6 +53,28 @@ function getAdaptiveQuestions(topicId, count = 5) {
   return shuffled.slice(0, count);
 }
 
+// Get questions for a specific level
+function getQuestionsForLevel(topicId, level, count = 5) {
+  const allQuestions = questionsBank[topicId] || [];
+  
+  // Get questions at selected level, with some from adjacent levels
+  const relevantQuestions = allQuestions.filter(q => 
+    q.difficulty >= Math.max(1, level - 1) && 
+    q.difficulty <= Math.min(3, level + 1)
+  );
+  
+  // Prioritize selected level questions
+  const sorted = relevantQuestions.sort((a, b) => {
+    const aDiff = Math.abs(a.difficulty - level);
+    const bDiff = Math.abs(b.difficulty - level);
+    return aDiff - bDiff;
+  });
+  
+  // Shuffle and take count
+  const shuffled = sorted.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
 export default function QuestionScreen({ topic, childName, onComplete, onBack }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -60,12 +82,31 @@ export default function QuestionScreen({ topic, childName, onComplete, onBack })
   const [showFeedback, setShowFeedback] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(1);
+  const [showLevelSelect, setShowLevelSelect] = useState(true);
+
+  const handleLevelSelect = (level) => {
+    setCurrentLevel(level);
+    // Save the selected level
+    const progress = JSON.parse(localStorage.getItem('childProgress') || '{}');
+    progress[topic.id] = { ...progress[topic.id], level };
+    localStorage.setItem('childProgress', JSON.stringify(progress));
+    
+    const levelQuestions = getQuestionsForLevel(topic.id, level, 5);
+    setQuestions(levelQuestions);
+    setShowLevelSelect(false);
+  };
 
   useEffect(() => {
-    const level = getChildLevel(topic.id);
-    setCurrentLevel(level);
-    const adaptiveQuestions = getAdaptiveQuestions(topic.id, 5);
-    setQuestions(adaptiveQuestions);
+    // Check if this is first time playing this topic
+    const progress = JSON.parse(localStorage.getItem('childProgress') || '{}');
+    if (progress[topic.id]?.attempts > 0) {
+      // Already played before, use saved level
+      const level = progress[topic.id]?.level || 1;
+      setCurrentLevel(level);
+      const adaptiveQuestions = getAdaptiveQuestions(topic.id, 5);
+      setQuestions(adaptiveQuestions);
+      setShowLevelSelect(false);
+    }
   }, [topic]);
 
   const currentQuestion = questions[currentIndex];
@@ -93,6 +134,86 @@ export default function QuestionScreen({ topic, childName, onComplete, onBack })
       onComplete(correctCount, questions.length, newLevel);
     }
   };
+
+  // Show level selection screen
+  if (showLevelSelect) {
+    return (
+      <motion.div
+        className="question-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <div className="question-card" style={{ textAlign: 'center' }}>
+          <button className="back-button" onClick={onBack} style={{ position: 'absolute', top: '20px', right: '20px' }}>
+            ← חזרה
+          </button>
+          
+          <h2 style={{ fontSize: '28px', marginBottom: '10px', marginTop: '20px' }}>
+            {topic.icon} {topic.title}
+          </h2>
+          <p style={{ fontSize: '18px', color: '#666', marginBottom: '30px' }}>
+            באיזו רמה תרצה להתחיל?
+          </p>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '300px', margin: '0 auto' }}>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleLevelSelect(1)}
+              style={{
+                padding: '20px',
+                fontSize: '20px',
+                fontWeight: '600',
+                background: 'linear-gradient(135deg, #74ebd5 0%, #9face6 100%)',
+                border: 'none',
+                borderRadius: '15px',
+                cursor: 'pointer',
+                color: '#333'
+              }}
+            >
+              ⭐ קל
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleLevelSelect(2)}
+              style={{
+                padding: '20px',
+                fontSize: '20px',
+                fontWeight: '600',
+                background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                border: 'none',
+                borderRadius: '15px',
+                cursor: 'pointer',
+                color: 'white'
+              }}
+            >
+              ⭐⭐ בינוני
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleLevelSelect(3)}
+              style={{
+                padding: '20px',
+                fontSize: '20px',
+                fontWeight: '600',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                border: 'none',
+                borderRadius: '15px',
+                cursor: 'pointer',
+                color: 'white'
+              }}
+            >
+              ⭐⭐⭐ מאתגר
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   if (!currentQuestion) {
     return (

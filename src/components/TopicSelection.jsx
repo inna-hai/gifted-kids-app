@@ -172,7 +172,7 @@ export default function TopicSelection({ childName, stars, onSelectTopic }) {
         color: '#888',
         opacity: 0.6 
       }}>
-        גרסה 2.8 • סדרות מאתגרות 🆕
+        גרסה 2.9 • בחירת רמה 🆕
       </div>
     </motion.div>
   );
