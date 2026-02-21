@@ -21,7 +21,17 @@ export const questionsBank = {
     { question: 'מה המספר הבא בסדרה? 28, 32, ?, 40, 44', answers: ['38', '35', '36', '34'], correct: '36', difficulty: 2 },
     { question: 'מה המספר הבא בסדרה? 13, 23, ?, 43', answers: ['34', '43', '33', '30'], correct: '33', difficulty: 2 },
     { question: 'מה המספר הבא בסדרה? 16, 14, 12, ?', answers: ['10', '11', '8', '14'], correct: '10', difficulty: 2 },
-    { question: 'סדרת פיבונאצ׳י: 1, 1, 2, 3, 5, ?', answers: ['8', '7', '6', '9'], correct: '8', difficulty: 3 },
+    // Hard level 3 - More challenging sequences
+    { question: 'מה המספר הבא בסדרה? 2, 3, 5, 8, 12, ?', answers: ['15', '16', '17', '18'], correct: '17', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 1, 2, 4, 7, 11, ?', answers: ['14', '15', '16', '17'], correct: '16', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 3, 6, 11, 18, 27, ?', answers: ['36', '38', '40', '42'], correct: '38', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 1, 3, 7, 15, 31, ?', answers: ['47', '55', '63', '72'], correct: '63', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 2, 5, 11, 23, 47, ?', answers: ['71', '85', '95', '99'], correct: '95', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 1, 4, 10, 22, 46, ?', answers: ['70', '82', '94', '100'], correct: '94', difficulty: 3 },
+    { question: 'מה המספר החסר בסדרה? 2, 6, ?, 42, 86', answers: ['14', '18', '20', '24'], correct: '14', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 1, 2, 6, 24, 120, ?', answers: ['240', '480', '620', '720'], correct: '720', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 0, 1, 1, 2, 3, 5, 8, ?', answers: ['11', '12', '13', '14'], correct: '13', difficulty: 3 },
+    { question: 'מה המספר הבא בסדרה? 100, 98, 94, 88, 80, ?', answers: ['68', '70', '72', '74'], correct: '70', difficulty: 3 },
   ],
 
   'sequences-shapes': [
