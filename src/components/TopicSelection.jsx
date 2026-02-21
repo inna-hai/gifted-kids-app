@@ -1,5 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Dashboard from './Dashboard';
+import { getStats, getTodayProgress, getStreakData, getEncouragingMessage } from '../utils/statsManager';
 
 const topics = [
   {
@@ -53,6 +55,22 @@ const topics = [
 ];
 
 export default function TopicSelection({ childName, stars, onSelectTopic }) {
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [stats, setStats] = useState(getStats());
+  const [todayProgress, setTodayProgress] = useState(getTodayProgress());
+  const [streakData, setStreakData] = useState(getStreakData());
+  const progress = JSON.parse(localStorage.getItem('childProgress') || '{}');
+
+  useEffect(() => {
+    setStats(getStats());
+    setTodayProgress(getTodayProgress());
+    setStreakData(getStreakData());
+  }, []);
+
+  const getTopicLevel = (topicId) => {
+    return progress[topicId]?.level || 0;
+  };
+
   return (
     <motion.div
       className="topics-screen"
@@ -61,32 +79,91 @@ export default function TopicSelection({ childName, stars, onSelectTopic }) {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4 }}
     >
+      <button 
+        className="dashboard-button"
+        onClick={() => setShowDashboard(true)}
+      >
+        📊 ההתקדמות שלי
+      </button>
+
       <div className="topics-header">
         <h1 className="greeting">היי {childName}! 👋</h1>
-        <div className="stars-display">
-          <span>⭐</span>
-          <span>{stars} כוכבים</span>
+        
+        {/* Quick Stats Bar */}
+        <div className="quick-stats">
+          <div className="quick-stat">
+            <span className="quick-stat-icon">🔥</span>
+            <span className="quick-stat-value">{streakData.currentStreak}</span>
+            <span className="quick-stat-label">ימים</span>
+          </div>
+          <div className="quick-stat">
+            <span className="quick-stat-icon">⭐</span>
+            <span className="quick-stat-value">{stats.totalStars}</span>
+            <span className="quick-stat-label">כוכבים</span>
+          </div>
+          <div className="quick-stat">
+            <span className="quick-stat-icon">🎯</span>
+            <span className="quick-stat-value">{todayProgress.questionsToday}/{todayProgress.dailyGoal}</span>
+            <span className="quick-stat-label">היום</span>
+          </div>
         </div>
+
+        {/* Daily Goal Progress */}
+        {!todayProgress.goalMet && (
+          <div className="daily-reminder">
+            <div className="mini-progress-bar">
+              <div 
+                className="mini-progress-fill"
+                style={{ width: `${Math.min(100, (todayProgress.questionsToday / todayProgress.dailyGoal) * 100)}%` }}
+              />
+            </div>
+            <span>עוד {todayProgress.dailyGoal - todayProgress.questionsToday} שאלות ליעד היומי!</span>
+          </div>
+        )}
+        {todayProgress.goalMet && (
+          <div className="daily-complete">
+            ✅ כל הכבוד! השלמת את היעד היומי! אפשר להמשיך לתרגל 🌟
+          </div>
+        )}
       </div>
 
       <div className="topics-grid">
-        {topics.map((topic, index) => (
-          <motion.div
-            key={topic.id}
-            className="topic-card"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onSelectTopic(topic)}
-          >
-            <div className="topic-icon">{topic.icon}</div>
-            <h3 className="topic-title">{topic.title}</h3>
-            <p className="topic-desc">{topic.desc}</p>
-          </motion.div>
-        ))}
+        {topics.map((topic, index) => {
+          const level = getTopicLevel(topic.id);
+          return (
+            <motion.div
+              key={topic.id}
+              className="topic-card"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => onSelectTopic(topic)}
+            >
+              <div className="topic-icon">{topic.icon}</div>
+              <h3 className="topic-title">{topic.title}</h3>
+              <p className="topic-desc">{topic.desc}</p>
+              {level > 0 && (
+                <div className="topic-level-indicator">
+                  {[1, 2, 3].map(l => (
+                    <span key={l} className={l <= level ? 'filled' : ''}>⭐</span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
       </div>
+
+      <AnimatePresence>
+        {showDashboard && (
+          <Dashboard 
+            childName={childName}
+            onClose={() => setShowDashboard(false)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
