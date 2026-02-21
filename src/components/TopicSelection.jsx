@@ -172,7 +172,7 @@ export default function TopicSelection({ childName, stars, onSelectTopic }) {
         color: '#888',
         opacity: 0.6 
       }}>
-        גרסה 2.5 • תיקון כיוון מספרים 🆕
+        גרסה 2.6 • 12 בעיות שברים 🆕
       </div>
     </motion.div>
   );
